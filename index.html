@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профессиональная Ориентация: Найдите Свою Идеальную Карьеру</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Calendly CSS -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --text-light: #ffffff;
+            --text-gray: #d1d5db;
+            --accent-blue: #3b82f6;
+            --accent-orange: #f97316;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: url('https://primalogik.com/wp-content/uploads/2025/04/pexels-silverkblack-23496573.jpg') center/cover no-repeat;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        header > * {
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            font-size: 4.5em;
+            font-weight: 700;
+            margin: 0 0 20px;
+            letter-spacing: -1px;
+        }
+        .subtitle {
+            font-size: 1.8em;
+            max-width: 800px;
+            margin: 30px auto;
+            opacity: 0.9;
+        }
+        .cta-button {
+            background-color: var(--accent-orange);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 999px;
+            font-size: 1.4em;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(249,115,22,0.4);
+        }
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(249,115,22,0.6);
+        }
+        nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        nav a {
+            color: var(--text-gray);
+            margin-left: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--text-light);
+        }
+        section {
+            padding: 120px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h2 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 80px;
+            font-weight: 600;
+        }
+        .founder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .founder-img {
+            margin-bottom: 50px;
+        }
+        .founder-img img {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--accent-orange);
+            box-shadow: 0 10px 30px rgba(249,115,22,0.3);
+        }
+        .founder-text {
+            max-width: 800px;
+        }
+        .founder-text h3 {
+            font-size: 2.8em;
+            margin-bottom: 30px;
+        }
+        .founder-text p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        .services-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            row-gap: 80px;
+        }
+        .service-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            width: 350px;
+            text-align: center;
+            transition: all 0.4s;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:hover {
+            transform: translateY(-20px);
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .service-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            transition: transform 0.4s;
+        }
+        .service-card:hover img {
+            transform: scale(1.05);
+        }
+        .service-card h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .service-card .price {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--accent-orange);
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .benefits-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        .benefit-item {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            text-align: center;
+        }
+        .benefit-item h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        .testimonial {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 40px auto;
+            font-style: italic;
+        }
+        .faq-item {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.3em;
+        }
+        .faq-answer {
+            display: none;
+            margin-top: 15px;
+            opacity: 0.9;
+        }
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 60px;
+            border-radius: 20px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 18px;
+            margin: 15px 0;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1em;
+        }
+        input::placeholder, textarea::placeholder {
+            color: var(--text-gray);
+        }
+        button {
+            background: var(--accent-orange);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 999px;
+            font-size: 1.4em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(249,115,22,0.4);
+        }
+        button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(249,115,22,0.6);
+        }
+        .social-links {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .social-links a {
+            color: var(--accent-blue);
+            margin: 0 25px;
+            font-size: 1.5em;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            color: var(--accent-orange);
+        }
+        footer {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--text-gray);
+            font-size: 1.1em;
+        }
+        .calendly-inline-widget {
+            min-height: 900px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 3em; }
+            .subtitle { font-size: 1.4em; }
+            header { padding: 80px 20px; }
+            .founder-img img { width: 300px; height: 300px; }
+            .service-card { width: 300px; padding: 30px; }
+            .calendly-inline-widget { min-height: 700px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Профессиональная Ориентация</h1>
+        <p class="subtitle">Индивидуальная методика для детей и взрослых. Найдите профессию своей мечты с помощью экспертов. Первая консультация — бесплатно!</p>
+        <a href="#contacts" class="cta-button">Записаться Сейчас</a>
+    </header>
+
+    <nav>
+        <a href="#home">Главная</a>
+        <a href="#about">О нас</a>
+        <a href="#services">Услуги</a>
+        <a href="#benefits">Преимущества</a>
+        <a href="#testimonials">Отзывы</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacts">Контакты</a>
+    </nav>
+
+    <section id="home">
+        <h2>Добро Пожаловать</h2>
+        <p style="text-align:center; max-width:800px; margin:0 auto; font-size:1.3em; opacity:0.9;">
+            В современном мире выбор профессии — ключ к счастливой жизни. Мы помогаем детям, подросткам и взрослым найти своё призвание с помощью уникальной индивидуальной методики.
+        </p>
+    </section>
+
+    <section id="about">
+        <h2>Основатель и Ведущий Специалист</h2>
+        
+        <div class="founder">
+            <div class="founder-img">
+                <img src="1000001296.jpg" alt="Наталия">
+            </div>
+            <div class="founder-text">
+                <h3>Наталия</h3>
+                <p><strong>Квалифицированный психолог, карьерный консультант с 10-летним опытом.</strong></p>
+                <p>Я основала этот центр, потому что верю: каждый человек достоин заниматься делом, которое приносит радость и успех. За годы практики я помогла сотням детей, подростков и взрослых найти своё истинное призвание.</p>
+                <p>Моя авторская методика сочетает классические психологические тесты с современными инструментами анализа рынка труда. Я лично провожу многие консультации и гарантирую индивидуальный подход к каждому клиенту.</p>
+                <p>Дипломированный специалист России. Постоянно повышаю квалификацию на международных семинарах.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Наши Услуги</h2>
+        <div class="services-wrapper">
+            <div class="service-card">
+                <img src="https://www.uopeople.edu/wp-content/uploads/2022/06/Things-School-Guidance-Counselors-Should-Be-Telling-Every-Student-featured-image-550x385.jpg.webp" alt="Экспресс-тестирование">
+                <h3>Экспресс-тестирование для детей и подростков</h3>
+                <p>Быстрый онлайн-тест для предварительного определения интересов и склонностей. Результаты + рекомендация за 30–45 минут.</p>
+                <p class="price">от 1 000 ₽</p>
+            </div>
+            <div class="service-card">
+                <img src="https://imagekit.gallup.com/fusion/tr:n-emd_soc_meta_twitter/POLL/cd58c735-de51-47bb-8a06-c15ddc85a459.jpg" alt="Семейная консультация">
+                <h3>Семейная профконсультация (родитель + подросток)</h3>
+                <p>Совместная сессия для обсуждения интересов ребёнка, семейных ожиданий и рекомендаций по профессии.</p>
+                <p class="price">от 3 000 ₽</p>
+            </div>
+            <div class="service-card">
+                <img src="https://media.istockphoto.com/id/2148493228/photo/smiling-young-teenage-female-patient-talking-to-professional-mental-therapist.jpg?s=612x612&w=0&k=20&c=Tj-6YIzwxipIy_m2XTB5DIlbYphEDfswOJhDz9vJdcc=" alt="Для детей и подростков">
+                <h3>Для Детей и Подростков</h3>
+                <p>Полноценная программа: тесты, задания, рекомендации по предметам и будущей профессии.</p>
+                <p class="price">от 3 000 ₽</p>
+            </div>
+            <div class="service-card">
+                <img src="https://assets.betterhelp.com/advice/images/aaea2a2bde5fa12857d4d181c2950f5a-counseling-awareness-month_10_l.jpg" alt="Для взрослых">
+                <h3>Для Взрослых</h3>
+                <p>Анализ опыта, тесты, стратегии смены карьеры и развития навыков.</p>
+                <p class="price">от 5 000 ₽</p>
+            </div>
+            <div class="service-card">
+                <img src="https://education.ec.europa.eu/sites/default/files/styles/eac_ratio_16_9_xl/public/2023-06/EDEH%20community%20workshop_Br%C3%BCssel%20%284%29%20%281%29.jpg?h=516e0567&itok=-lfMzgjZ" alt="Групповые программы">
+                <h3>Групповые Программы</h3>
+                <p>Семинары и тренинги для школ, компаний и семей.</p>
+                <p class="price">от 8 000 ₽ за группу</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits">
+        <h2>Почему Выбирают Нас</h2>
+        <div class="benefits-list">
+            <div class="benefit-item">
+                <h3>Индивидуальный Подход</h3>
+                <p>Мы создаём персонализированные программы, учитывая уникальные интересы, таланты и цели каждого клиента, чтобы обеспечить максимальную эффективность консультации.</p>
+            </div>
+            <div class="benefit-item">
+                <h3>Научная Основа</h3>
+                <p>Наши методики основаны на проверенных психологических тестах (Майерс-Бриггс, Холланд) и современных инструментах анализа рынка труда, подтверждённых исследованиями.</p>
+            </div>
+            <div class="benefit-item">
+                <h3>Доступность и Удобство</h3>
+                <p>Консультации доступны онлайн и оффлайн, с гибким графиком и поддержкой 24/7, чтобы вы могли получить помощь в удобное время без лишних хлопот.</p>
+            </div>
+            <div class="benefit-item">
+                <h3>Опытные Специалисты</h3>
+                <p>Команда сертифицированных психологов и консультантов с многолетним опытом помогает тысячам клиентов найти путь к успешной карьере.</p>
+            </div>
+            <div class="benefit-item">
+                <h3>Реальные Результаты</h3>
+                <p>Наши клиенты достигают карьерных высот, повышают доход и обретают удовлетворение от работы — 98% рекомендуют нас друзьям.</p>
+            </div>
+            <div class="benefit-item">
+                <h3>Конфиденциальность</h3>
+                <p>Все консультации проходят в строгой конфиденциальности, чтобы вы чувствовали себя комфортно и открыто обсуждали важные вопросы.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <h2>Что Говорят Наши Клиенты</h2>
+        <div class="testimonial">
+            <p>"Благодаря вашей программе мой сын наконец-то понял, чем хочет заниматься. Теперь он мотивирован и учится с удовольствием!" — Анна, мама 14-летнего подростка.</p>
+        </div>
+        <div class="testimonial">
+            <p>"Я сменила профессию в 35 лет и теперь зарабатываю в 2 раза больше. Спасибо за профессиональную поддержку!" — Мария, менеджер.</p>
+        </div>
+        <div class="testimonial">
+            <p>"Групповой семинар для нашей команды стал настоящим прорывом. Рекомендую всем!" — Алексей, HR-директор.</p>
+        </div>
+    </section>
+
+    <section id="faq">
+        <h2>Часто Задаваемые Вопросы</h2>
+        <div class="faq-item">
+            <div class="faq-question">Сколько длится консультация?</div>
+            <div class="faq-answer">Обычно консультация длится от 1 до 2 часов, в зависимости от выбранной услуги и индивидуальных нужд клиента. Мы всегда адаптируем время под ваш график, чтобы обеспечить комфорт и эффективность. Для экспресс-тестирования — 30-45 минут.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Можно ли провести сессию онлайн?</div>
+            <div class="faq-answer">Да, мы предлагаем онлайн-сессии через платформы вроде Zoom или Skype. Это удобно для клиентов из любого региона, и качество консультации остаётся на высшем уровне, с использованием интерактивных инструментов и тестов в реальном времени.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Есть ли гарантии?</div>
+            <div class="faq-answer">Мы уверены в эффективности наших методик, поэтому если после первой сессии вы не почувствуете пользы, мы предложим корректировку программы или альтернативные варианты, чтобы вы остались довольны результатом.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Подходит ли для детей?</div>
+            <div class="faq-answer">Да, наша методика специально адаптирована для детей от 10 лет. Мы используем игровые элементы, увлекательные тесты и развивающие задания, чтобы процесс был интересным и полезным, без давления. Родители могут участвовать в семейных консультациях.</div>
+        </div>
+    </section>
+
+    <section id="contacts">
+        <h2>Запишитесь на Консультацию</h2>
+        <p style="text-align:center; max-width:800px; margin:0 auto 60px; font-size:1.3em; opacity:0.9;">
+            Выберите удобное время для бесплатной вводной консультации или платной сессии прямо в календаре ниже.
+        </p>
+        
+        <!-- Calendly inline widget -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/nat-khromova/30min?background_color=000000&text_color=ffffff&primary_color=f97316" style="min-width:320px; height:900px;"></div>
+
+        <p style="text-align:center; margin-top:80px;">
+            Или оставьте заявку — мы свяжемся с вами:<br><br>
+            <form id="contactForm" action="https://formspree.io/f/mdaoganq" method="POST">
+                <input type="text" name="name" placeholder="Ваше имя" required>
+                <input type="email" name="email" placeholder="Ваш email" required>
+                <textarea name="message" placeholder="Ваше сообщение (укажите удобное время для звонка)" rows="6" required></textarea>
+                <button type="submit">Отправить Заявку</button>
+            </form>
+            <br>
+            Телефон: +7 (952) 786-06-35<br>
+            Email: nat.khromova@mail.ru<br>
+            Адрес: г. Нижний Новгород, пл. Советская, д. 7<br>
+            <div class="social-links">
+                <a href="https://t.me/natali1212122">Telegram</a>
+                <a href="https://vk.com/id353982505">VK</a>
+            </div>
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Профессиональная Ориентация. Все права защищены.</p>
+    </footer>
+
+    <!-- Calendly script -->
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+    <script>
+        // Обработка формы через Formspree
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', function(e) {
+            // Можно добавить своё уведомление
+            setTimeout(() => {
+                alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
+                form.reset();
+            }, 1000);
+        });
+
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>
